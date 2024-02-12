@@ -43,7 +43,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
           ...config,
           [e.object.parent.name]: !config[e.object.parent.name],
         });
-        config[e.object.parent.name]  ? setSelectedElements(selectedElements.filter((item)=> item.name !== e.object.parent.name))  : setSelectedElements([...selectedElements,{"name": e.object.parent.name}] )
+        config[e.object.parent.name]  ? setSelectedElements(selectedElements.filter((item)=> item.name !== e.object.parent.name))  : setSelectedElements([...selectedElements,{"name": e.object.parent.name, damage: "minorDamage"}] )
         console.log(
           e.object.parent.name,
           config, 

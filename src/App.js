@@ -60,7 +60,7 @@ export default function App() {
   </Canvas>
   <div className="calc">
     <h1 className="calc__title">Калькулятор кузовных работ</h1>
-    <SelectedElements selectedElements={selectedElements}  />
+    <SelectedElements selectedElements={selectedElements} setSelectedElements ={setSelectedElements} />
     <div className="coin">Стоимость работ: {coin} р.</div>
   </div>
  
