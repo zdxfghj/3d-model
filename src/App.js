@@ -8,28 +8,26 @@ import SelectedElements from './SelecredElements'
 
 
 export default function App() {
-  const [selectedElements,setSelectedElements] = useState([])
-  const [coin,setCoin] = useState(100)
- 
-  
-
-  const [config,setConfig] = useState({
-    all: false,
-    front_bumper:  false ,
-    hood:  false ,
-    back_bumper: false,
-    front_fender_left:  false,
-    front_fender_rigth:  false,
-    roof: false,
-    front_door_left: false,
-    front_door_rigth: false,
-    back_door_left: false,
-    back_door_rigth: false,
-    trunk_lid:false,
-    back_fender_left: false,
-    back_fender_rigth: false,
-}
+  const [selectedElements,setSelectedElements] = useState({
+     front_bumper:{selected:  false, baseCost: 100, damage: 1} ,
+     hood:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
+     back_bumper:{selected: false, damage: 1, coin: 130,variableCoin: 130},
+     front_fender_left:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
+     front_fender_rigth:{selected: false, damage: 1, coin: 130,variableCoin: 130},
+     roof:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
+     front_door_left:{selected: false, damage: 1, coin: 130,variableCoin: 130},
+     front_door_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
+     back_door_left:{selected: false, damage: 1, coin: 130,variableCoin: 130},
+     back_door_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
+     trunk_lid:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
+     back_fender_left:{selected: false, damage: 1, coin: 130,variableCoin: 130},
+     back_fender_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
+  }
 )
+ const [allCoin,setAllCoin] = useState(100)
+
+
+ 
 
 
   return (
@@ -44,7 +42,7 @@ export default function App() {
             <Outline visibleEdgeColor="white" hiddenEdgeColor="white"  width={1000} edgeStrength={5} />
           </EffectComposer>
         <Bounds fit clip margin={1.2} damping={0}>
-          <VolkswagenCanvas config = {config}  setConfig = {setConfig} setSelectedElements={setSelectedElements} selectedElements = {selectedElements} />
+          <VolkswagenCanvas  setSelectedElements={setSelectedElements} selectedElements = {selectedElements} />
         </Bounds>
         </Selection>
       </Center>
@@ -61,7 +59,7 @@ export default function App() {
   <div className="calc">
     <h1 className="calc__title">Калькулятор кузовных работ</h1>
     <SelectedElements selectedElements={selectedElements} setSelectedElements ={setSelectedElements} />
-    <div className="coin">Стоимость работ: {coin} р.</div>
+    <div className="coin">Стоимость работ: {allCoin} р.</div>
   </div>
  
   </div>

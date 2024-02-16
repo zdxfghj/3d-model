@@ -8,50 +8,20 @@ import { useGLTF } from "@react-three/drei";
 import { Select } from "@react-three/postprocessing";
 import { useControls, folder } from "leva";
 
-export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,selectedElements}) {
+export function VolkswagenCanvas({ setSelectedElements,selectedElements}) {
   const group = useRef();
   const { nodes, materials } = useGLTF("/volkswagen_golf1.glb");
   const [hovered, hover] = useState();
-
-  // const config = useControls({
-  //   all: { value: false },
-  //   parts: folder(
-  //     {
-  //       front_bumper: { value: false }
-  //       hood: { value: false },
-  //       back_bumper: { value: true },
-  //       front_fender_left: {value: false},
-  //       front_fender_rigth: {value: false},
-  //       roof:{value: false},
-  //       front_door_left:{value: false},
-  //       front_door_rigth:{value: false},
-  //       back_door_left:{value: false},
-  //       back_door_rigth:{value: false},
-  //       trunk_lid:{value: false},
-  //       back_fender_left: {value: false},
-  //       back_fender_rigth: {value: false},
-  //     },
-  //     { collapsed: true },
-  //   ),
-  // })
-
+  console.log(selectedElements?.front_door_left?.selected)
   return (
     <group
       onClick={(e) => {
         e.stopPropagation();
-        setConfig({
-          ...config,
-          [e.object.parent.name]: !config[e.object.parent.name],
-        });
-        config[e.object.parent.name]  ? setSelectedElements(selectedElements.filter((item)=> item.name !== e.object.parent.name))  : setSelectedElements([...selectedElements,{"name": e.object.parent.name, damage: "minorDamage"}] )
-        console.log(
-          e.object.parent.name,
-          config, 
-          !config[e.object.parent.name]
-        );
+        
+         setSelectedElements({...selectedElements,[e.object.parent.name]: {...selectedElements[e.object.parent.name],selected : !selectedElements[e.object.parent.name].selected}  })
       }}
     >
-      <Select enabled={config.all}>
+      
         <group dispose={null}>
           <group
             position={[0, 2.283, 0]}
@@ -97,7 +67,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                 <Select
                   name="front_door_left"
                   enabled={
-                    hovered === "front_door_left" || config.front_door_left
+                    hovered === "front_door_left" || selectedElements?.front_door_left?.selected
                   }
                 >
                   <mesh
@@ -109,7 +79,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                 <Select
                   name="back_door_left"
                   enabled={
-                    hovered === "back_door_left" || config.back_door_left
+                    hovered === "back_door_left" || selectedElements?.back_door_left?.selected
                   }
                 >
                   <mesh
@@ -122,7 +92,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                 <Select
                   name="back_door_rigth"
                   enabled={
-                    hovered === "back_door_rigth" || config.back_door_rigth
+                    hovered === "back_door_rigth" || selectedElements?.back_door_rigth?.selected
                   }
                 >
                   <mesh
@@ -134,7 +104,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                 <Select
                   name="front_door_rigth"
                   enabled={
-                    hovered === "front_door_rigth" || config.front_door_rigth
+                    hovered === "front_door_rigth" || selectedElements?.front_door_rigth?.selected
                   }
                 >
                   <mesh
@@ -178,7 +148,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
               >
                 <Select
                   name="front_bumper"
-                  enabled={hovered === "front_bumper" || config.front_bumper}
+                  enabled={hovered === "front_bumper" || selectedElements?.front_bumper?.selected}
                 >
                   <mesh
                     geometry={nodes.Object_153.geometry}
@@ -229,7 +199,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                 <Select
                   name="front_fender_left"
                   enabled={
-                    hovered === "front_fender_left" || config.front_fender_left
+                    hovered === "front_fender_left" || selectedElements?.front_fender_left?.selected
                   }
                 >
                   <mesh
@@ -242,7 +212,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                   name="front_fender_rigth"
                   enabled={
                     hovered === "front_fender_rigth" ||
-                    config.front_fender_rigth
+                    selectedElements?.front_fender_rigth?.selected
                   }
                 >
                   <mesh
@@ -423,7 +393,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                 rotation={[0, 1.571, 0]}
                 scale={2.618}
               >
-                <Select name="hood" enabled={hovered === "hood" || config.hood}>
+                <Select name="hood" enabled={hovered === "hood" || selectedElements?.hood?.selected}>
                   <mesh
                     geometry={nodes.Object_370.geometry}
                     material={materials.Car_Paint}
@@ -494,7 +464,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
               <group position={[-29.42, 53.845, 15.397]}>
                 <Select
                   name="back_bumper"
-                  enabled={hovered === "back_bumper" || config.back_bumper}
+                  enabled={hovered === "back_bumper" || selectedElements?.back_bumper?.selected}
                 >
                   <mesh
                     geometry={nodes.Object_129.geometry}
@@ -533,7 +503,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                 <Select
                   name="back_fender_left"
                   enabled={
-                    hovered === "back_fender_left" || config.back_fender_left
+                    hovered === "back_fender_left" || selectedElements?.back_fender_left?.selected
                   }
                 >
                   <mesh
@@ -544,7 +514,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
                 <Select
                   name="back_fender_rigth"
                   enabled={
-                    hovered === "back_fender_rigth" || config.back_fender_rigth
+                    hovered === "back_fender_rigth" || selectedElements?.back_fender_rigth?.selected
                   }
                 >
                   <mesh
@@ -622,7 +592,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
               rotation={[0, -1.571, 0]}
               scale={0.382}
             >
-              <Select name="roof" enabled={hovered === "roof" || config.roof}>
+              <Select name="roof" enabled={hovered === "roof" || selectedElements?.roof?.selected}>
                 <mesh
                   geometry={nodes.Object_344.geometry}
                   material={materials.Car_Paint}
@@ -762,7 +732,7 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
             >
               <Select
                 name="trunk_lid"
-                enabled={hovered === "trunk_lid" || config.trunk_lid}
+                enabled={hovered === "trunk_lid" || selectedElements?.trunk_lid?.selected}
               >
                 <mesh
                   geometry={nodes.Object_348.geometry}
@@ -1301,9 +1271,9 @@ export function VolkswagenCanvas({ config, setConfig ,setSelectedElements,select
             </group>
           </group>
         </group>
-      </Select>
+     
     </group>
   );
-}
+} 
 
 useGLTF.preload("/volkswagen_golf1.glb");
