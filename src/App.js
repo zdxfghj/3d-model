@@ -9,24 +9,27 @@ import SelectedElements from './SelecredElements'
 
 export default function App() {
   const [selectedElements,setSelectedElements] = useState({
-     front_bumper:{selected:  false, baseCost: 100, damage: 1} ,
-     hood:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
-     back_bumper:{selected: false, damage: 1, coin: 130,variableCoin: 130},
-     front_fender_left:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
-     front_fender_rigth:{selected: false, damage: 1, coin: 130,variableCoin: 130},
-     roof:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
-     front_door_left:{selected: false, damage: 1, coin: 130,variableCoin: 130},
-     front_door_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
-     back_door_left:{selected: false, damage: 1, coin: 130,variableCoin: 130},
-     back_door_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
-     trunk_lid:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
-     back_fender_left:{selected: false, damage: 1, coin: 130,variableCoin: 130},
-     back_fender_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130},
+     front_bumper:{selected:  false, baseCost: 100, damage: 1, coin: 130,variableCoin: 130, name:"Передний бампер"} ,
+     hood:{selected:  false, damage: 1, coin: 130,variableCoin: 130, name:"Капот"},
+     back_bumper:{selected: false, damage: 1, coin: 130,variableCoin: 130, name:"Задний бампер"},
+     front_fender_left:{selected:  false, damage: 1, coin: 130,variableCoin: 130, name:"Переднее левое крыло"},
+     front_fender_rigth:{selected: false, damage: 1, coin: 130,variableCoin: 130, name:"Переднее правое крыло"},
+     roof:{selected:  false, damage: 1, coin: 130,variableCoin: 130, name:"Крыша"},
+     front_door_left:{selected: false, damage: 1, coin: 130,variableCoin: 130, name:"Переднея левая дверь"},
+     front_door_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130, name:"Переднея правая дверь"},
+     back_door_left:{selected: false, damage: 1, coin: 130,variableCoin: 130, name:"Задняя левая дверь"},
+     back_door_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130, name:"Задняя правая дверь"},
+     trunk_lid:{selected:  false, damage: 1, coin: 130,variableCoin: 130, name:"Крышка багажника "},
+     back_fender_left:{selected: false, damage: 1, coin: 130,variableCoin: 130, name:"Заднее левое крыло"},
+     back_fender_rigth:{selected:  false, damage: 1, coin: 130,variableCoin: 130, name:"Задднее правое крыло"},
   }
 )
- const [allCoin,setAllCoin] = useState(100)
+ const [allCoin,setAllCoin] = useState(0)
 
-
+useEffect(()=>{
+  ///Problem
+  Object.keys(selectedElements).map((key, index) =>selectedElements[key].selected ? setAllCoin(allCoin+selectedElements[key].variableCoin) : null)
+},[selectedElements])
  
 
 
