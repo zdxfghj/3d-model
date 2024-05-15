@@ -1,5 +1,5 @@
-import React, { useState, Suspense, useEffect } from 'react'
-import { FrontSide } from 'three'
+import React from 'react'
+
 
 
 export default function SelectedElements({ selectedElements, setSelectedElements }) {
