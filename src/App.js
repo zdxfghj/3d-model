@@ -118,7 +118,7 @@ export default function App() {
   const [modelCar, setModelCar] = useState();
   const [email, setEmail] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
-  const [yearCar, setYearCar] = useState();
+  const [yearCar, setYearCar] = useState("2024");
   const [apiModelCar, setApiModelCar] = useState([]);
 
   useEffect(()=>{
@@ -131,6 +131,7 @@ export default function App() {
 
   useEffect(() => {
     ///Problem
+    setAllCoin(0)
     Object.keys(selectedElements).map((key, index) =>
       selectedElements[key].selected
         ? setAllCoin(allCoin + selectedElements[key].variableCoin)
@@ -235,7 +236,7 @@ export default function App() {
         </Suspense>
       </Canvas>
       
-      <div className="calc">
+      <div className="calc .bg-primary">
         <h1 className="calc__title">Калькулятор кузовных работ</h1>
        
           <form onSubmit={handleSubmit}>
@@ -271,7 +272,7 @@ export default function App() {
                <input name="phone"  type="name" class="form-control"  value={phoneNumber} onChange={handleChangePhoneNumber}/>
             </label>
             <br></br>
-            <input type="submit" className="btn btn-primary" value="Отправить"  onChange={handleSubmit} />
+            <input type="submit" className="btn btn-outline-light" value="Отправить"  onChange={handleSubmit} />
             </div>
           </form>
          
